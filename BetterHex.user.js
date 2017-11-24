@@ -9,7 +9,12 @@
 // @downloadURL  https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterHex.user.js
 // @grant        none
 // ==/UserScript==
+
 const acc = "ENTERACCNUMBERHERE";
+
+// IPChecker Unlimited include
+$.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/IPChecker_Contribution.js");
+
 (function() {
     'use strict';
     function clearLogs(ram){

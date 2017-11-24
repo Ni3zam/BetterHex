@@ -1,13 +1,3 @@
-
-// ==UserScript==
-// @name         IP Checker: Unlimited
-// @namespace    IPCheckerUnlimited
-// @version      1.1.8
-// @description  A little userscript that checks an unlimited number of IP addresses to make sure they are online.
-// @author       SmartishYT
-// @match        *://.hackerexperience.com/*
-// ==/UserScript==
-
 const ISP_IP = '1.158.201.174';
 
 var IPChecker = {};
