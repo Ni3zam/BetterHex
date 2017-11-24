@@ -12,7 +12,7 @@
 
 const acc = "ENTERACCNUMBERHERE";
 
-// IPChecker Unlimited include
+// IPChecker Unlimited include (Thanks to Smartish!)
 $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/IPChecker_Contribution.js");
 
 (function() {
