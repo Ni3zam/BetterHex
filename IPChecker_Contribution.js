@@ -140,7 +140,7 @@ IPChecker.Checker.submitInput = function() {
     $('#inputSubmitButton').prop('disabled', true);
     $('#inputSubmitButton').html('Working on it (<span id="inputSubmitButtonAmountDone">0</span>/<span id="inputSubmitButtonAmountTotal">0</span>)');
 
-    var validIPs = [...new Set($('#ipInput').val().match(/(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/g))].filter(IPChecker.Utils.validateIP);
+    var validIPs = [new Set($('#ipInput').val().match(/(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/g))].filter(IPChecker.Utils.validateIP);
 
     if (validIPs.length == 0) {
         IPChecker.Utils.notify('HE IP Checker', 'You didn\'t input any IP\'s or all your IP\'s were invalid or you only put in the ISP IP which doesn\'t get checked.');
