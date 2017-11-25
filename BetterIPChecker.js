@@ -7,6 +7,7 @@ var nonExisting = 0;
 var NPCs = [];
 var VPCs = [];
 var ClanServers = [];
+var error = [];
 var IPsToCheck = [];
 
 function gritterNotify(opts) {
@@ -50,6 +51,7 @@ function checkIPs(ipArray) {
         NPCs = [];
         VPCs = [];
         ClanServers = [];
+        error = [];
 
         totalIPsToCheck = ipArray.length;
         console.log(ipArray);
@@ -69,30 +71,39 @@ function checkIPArray() {
     var ip = IPsToCheck[0];
     IPsToCheck.splice(0, 1);
 
-    $.get('https://legacy.hackerexperience.com/internet?ip=' + ip, function(data) {
-        if ($('.widget-content:contains("404")', data).length) {
-            nonExisting++;
-        } else {
-            var type = $('.label.pull-right', data).text();
+    $.ajax({
+       url: "https://legacy.hackerexperience.com/internet?ip=" + ip,
+        type: "GET",
+        success: function(data) {
+            if ($('.widget-content:contains("404")', data).length) {
+                nonExisting++;
+            } else {
+                var type = $('.label.pull-right', data).text();
 
-            switch (type) {
-                case 'NPC':
-                    NPCs.push(ip);
-                    break;
-                case 'VPC':
-                    VPCs.push(ip);
-                    break;
-                case 'Clan Server':
-                    ClanServers.push(ip);
-                    break;
-                default:
-                    NPCs.push(ip);
+                switch (type) {
+                    case 'NPC':
+                        NPCs.push(ip);
+                        break;
+                    case 'VPC':
+                        VPCs.push(ip);
+                        break;
+                    case 'Clan Server':
+                        ClanServers.push(ip);
+                        break;
+                    default:
+                        NPCs.push(ip);
+                }
             }
-        }
 
-        totalChecked++;
-        $("#amountRsc")[0].innerText = totalChecked + "/" + totalAmount;
-        checkIPArray();
+            totalChecked++;
+            $("#amountRsc")[0].innerText = totalChecked + "/" + totalAmount;
+            checkIPArray();
+        },
+        error: function(data){
+            error.push(ip);
+            totalChecked++;
+            checkIPArray();
+        }
     });
 }
 
@@ -150,7 +161,11 @@ function submitInput() {
 }
 
 function finishSubmit() {
-    var text = 'Checked ' + totalIPsToCheck + ' IP\'s of which ' + nonExisting + ' didn\'t exist. There were ' + NPCs.length + ' NPC\'s, ' + VPCs.length + ' VPC\'s and ' + ClanServers.length + ' Clan servers.';
+    var text = 'Checked ' + totalIPsToCheck + ' IP\'s of which ' + nonExisting + ' didn\'t exist. There were ' + NPCs.length + ' NPC\'s, ' + VPCs.length + ' VPC\'s, ' + ClanServers.length + ' Clan servers and ' + errors.length + " Error Cases";
+    if(errors.length > 0){
+        text += '\n\nError IP\'s (' + errors.length + ')\n\n';
+        text += errors.join('\n');
+    }
     if (NPCs.length > 0) {
         text += '\n\nNPC IP\'s (' + NPCs.length + ')\n\n';
         text += NPCs.join('\n');
