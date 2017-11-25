@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Better HEx by Logfro
 // @namespace    https://logfro.de/
-// @version      0.51
+// @version      0.52
 // @description  Better HEx adds useful functions to the legacy hacker experience
 // @author       Logfro
 // @match        https://legacy.hackerexperience.com/*
@@ -279,54 +279,55 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
 		});
 	}
 	loadClearOwnLogBtn();
-	
-    switch(window.location.href){
-        case "https://legacy.hackerexperience.com/internet?view=logs":
-            if(document.getElementsByName("log").length > 0){
-                loadLogFunc();
-            }
-            break;
-        case "https://legacy.hackerexperience.com/internet":
-            if(document.getElementsByName("log").length > 0){
-                loadLogFunc();
-            }
-            break;
-		case "https://legacy.hackerexperience.com/internet?ip=160.7.191.179":
-			if($(".alert-success").length > 1 && $("#btc-login").length < 1 && $(".alert-success")[0].innerText.indexOf("You logged in to the address") > -1){
+	$(document).ready(function(){
+		switch(window.location.href){
+			case "https://legacy.hackerexperience.com/internet?view=logs":
+				if(document.getElementsByName("log").length > 0){
+					loadLogFunc();
+				}
+				break;
+			case "https://legacy.hackerexperience.com/internet":
+				if(document.getElementsByName("log").length > 0){
+					loadLogFunc();
+				}
+				break;
+			case "https://legacy.hackerexperience.com/internet?ip=160.7.191.179":
+				if($(".alert-success").length > 1 && $("#btc-login").length < 1 && $(".alert-success")[0].innerText.indexOf("You logged in to the address") > -1){
+					clearOwnLogs();
+				}
+				break;
+			case "https://legacy.hackerexperience.com/list?action=collect&show=last":
 				clearOwnLogs();
-			}
-			break;
-		case "https://legacy.hackerexperience.com/list?action=collect&show=last":
-			clearOwnLogs();
-			break;
-		case "https://legacy.hackerexperience.com/hardware?opt=xhd":
-			loadHDDUpgradeBtn();
-			break;
-        default:
-            break;
+				break;
+			case "https://legacy.hackerexperience.com/hardware?opt=xhd":
+				loadHDDUpgradeBtn();
+				break;
+			default:
+				break;
 
-    }
-	if(window.location.href.indexOf("#UpgradeScript") > -1){
-		upgradeServerMax();
-	}
-	if(window.location.href.indexOf("https://legacy.hackerexperience.com/hardware?opt=xhd&acc=") > -1){
-		buyHDD();
-	}
-	if(window.location.href.indexOf("https://legacy.hackerexperience.com/hardware") > -1){
-        if(localStorage.getItem("running") != "true"){
-            loadUpgradeHDDOfServer();
-            loadUpgradeCPUOfServer();
-        } else {
-        	if(localStorage.getItem("type") == "cpu"){
-            	upgradeCPU();
-            } else {
-            	upgradeHDD();
-            }
-        }
-	}
-	var realConfirm=window.confirm;
-		window.confirm=function(){
-        window.confirm=realConfirm;
-        return true;
-    };
+		}
+		if(window.location.href.indexOf("#UpgradeScript") > -1){
+			upgradeServerMax();
+		}
+		if(window.location.href.indexOf("https://legacy.hackerexperience.com/hardware?opt=xhd&acc=") > -1){
+			buyHDD();
+		}
+		if(window.location.href.indexOf("https://legacy.hackerexperience.com/hardware") > -1){
+			if(localStorage.getItem("running") != "true"){
+				loadUpgradeHDDOfServer();
+				loadUpgradeCPUOfServer();
+			} else {
+				if(localStorage.getItem("type") == "cpu"){
+					upgradeCPU();
+				} else {
+					upgradeHDD();
+				}
+			}
+		}
+		var realConfirm=window.confirm;
+			window.confirm=function(){
+			window.confirm=realConfirm;
+			return true;
+		};
+    });
 })();
