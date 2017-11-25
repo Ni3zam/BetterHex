@@ -7,7 +7,7 @@ var nonExisting = 0;
 var NPCs = [];
 var VPCs = [];
 var ClanServers = [];
-var error = [];
+var errors = [];
 var IPsToCheck = [];
 
 function gritterNotify(opts) {
@@ -51,7 +51,7 @@ function checkIPs(ipArray) {
         NPCs = [];
         VPCs = [];
         ClanServers = [];
-        error = [];
+        errors = [];
 
         totalIPsToCheck = ipArray.length;
         console.log(ipArray);
@@ -100,7 +100,7 @@ function checkIPArray() {
             checkIPArray();
         },
         error: function(data){
-            error.push(ip);
+            errors.push(ip);
             totalChecked++;
             checkIPArray();
         }
