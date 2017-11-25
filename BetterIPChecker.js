@@ -54,7 +54,6 @@ function checkIPs(ipArray) {
         errors = [];
 
         totalIPsToCheck = ipArray.length;
-        console.log(ipArray);
         IPsToCheck = ipArray;
         totalAmount = ipArray.length;
 
