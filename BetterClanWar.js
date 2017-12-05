@@ -7,7 +7,7 @@ $(document).ready(function () {
 
 function loadDialog() {
     $.ajax({
-        url: "https://cdn.logfro.de/main.html",
+        url: "https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterClanWarDialog.html",
         type: "GET",
         success: function (data) {
             $("body").append(data);
