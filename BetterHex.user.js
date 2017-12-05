@@ -17,7 +17,7 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
 
 (function() {
     'use strict';
-    function clearLogs(ram){
+    function clearLogs(){
             var elm = document.getElementsByName("log")[0];
             var x = elm.value;
             var ownIP = document.getElementsByClassName("header-ip-show")[0].innerHTML;

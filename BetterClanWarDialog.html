@@ -1,0 +1,56 @@
+<div id="control-panel-main" class="modal-body" style="max-height: 405px; display: block;">
+    <div id="message-container"></div>
+    <table class="table">
+        <tbody>
+        <tr class="info">
+            <td>
+                <button id="victim" class="btn btn-success">Victim</button>
+                <button id="attacker" class="btn btn-danger">Attacker</button>
+                <button id="reset" class="btn btn-warning">Reset</button>
+            </td>
+        </tr>
+        <tr class="warning">
+            <td>
+                <input id="attackIP" class="controls fieldsContent" placeholder="IP to Auto Attack" type="text" style="vertical-align: initial; margin-left: 10px; margin-right: 10px; width:25%; display: none;">
+                <button id="runAttacker" class="btn btn-secondary" style="display: none;">Run Attacker</button>
+                <button id="runVictim" class="btn btn-secondary" style="display: none;">Run Victim (not working yet)</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    function load(){
+        $("#attacker").on("click",function(){
+            $("#attackIP").removeAttr("style").show();
+            $("#runAttacker").removeAttr("style").show();
+        });
+
+        $("#victim").on("click",function(){
+            $("#attackIP").removeAttr("style").hide();
+            $("#runVictim").removeAttr("style").show();
+            $("#runAttacker").removeAttr("style").hide();
+        });
+
+        $("#runAttacker").on("click",function(){
+            var attackIP = $("#attackIP")[0].value;
+            if(attackIP.length > 0){
+                runAttacker(attackIP);
+            } else {
+                alert("Attack IP is empty!");
+            }
+        });
+
+        $("#runVictim").on("click",function(){
+            //runVictim();
+        });
+
+        $("#reset").on("click",function(){
+            reset();
+        });
+    }
+
+    $(document).ready(function () {
+        load();
+    })
+</script>
