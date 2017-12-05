@@ -1,6 +1,11 @@
 # BetterHex
 Adds functionalities to legacy hacker experience
-If you have Tampermonkey installed click [this](https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterHex.user.js) link to auto install it.
+
+
+<h2>Installation</h2>
+- Step 1: Install Tampermonkey from https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en
+- Step 2: If you have Tampermonkey installed click [this](https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterHex.user.js) link to auto install it.
+- Step 3: Have fun!
 
 <h2>Current functions</h2>
 
