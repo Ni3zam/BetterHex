@@ -313,6 +313,7 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
 			buyHDD();
 		}
 		if(window.location.href.indexOf("https://legacy.hackerexperience.com/hardware") > -1){
+			/*
 			if(localStorage.getItem("running") != "true"){
 				loadUpgradeHDDOfServer();
 				loadUpgradeCPUOfServer();
@@ -323,6 +324,7 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
 					upgradeHDD();
 				}
 			}
+			*/
 		}
 		var realConfirm=window.confirm;
 			window.confirm=function(){
