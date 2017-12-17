@@ -113,7 +113,7 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
         window.location = serverLink;
     }
 
-	function buyNewHDD(times){
+	function submitBuyForm(times){
 		if(times.length < 1){
 			alert("You need to type in a number!");
 			return false;
@@ -130,7 +130,7 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
                 x++;
                 $("form")[1].submit();
             }
-        },400);
+        },300);
 	}
 
 	function openPopUp(url, name){
@@ -234,23 +234,42 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
         });
 	}
 
-	function loadHDDUpgradeBtn(){
+	function loadHDDBuyBtn(){
 		$(document).ready(function(){
 			var btn = document.createElement("input");
 			var input = document.createElement("input");
 			input.type = "text";
-			input.id = "LogfroHDDUpgradeBtnTimes";
+			input.id = "LogfroHDDBuyBtnTimes";
 			input.style = "margin: 10px;";
 			input.placeholder = "How many times?";
 			btn.className = "btn btn-success";
-			btn.id = "LogfroHDDUpgradeBtn";
+			btn.id = "LogfroHDDBuyBtn";
 			btn.value = "Buy x times";
 			btn.type = "button";
             $("#buy .modal-footer form")[0].appendChild(btn);
             $("#buy .modal-footer form")[0].appendChild(input);
-			$("#LogfroHDDUpgradeBtn").on("click", function(){buyNewHDD($("#LogfroHDDUpgradeBtnTimes")[0].value);});
+			$("#LogfroHDDBuyBtn").on("click", function(){submitBuyForm($("#LogfroHDDBuyBtnTimes")[0].value);});
 		});
 	}
+
+    function loadServerBuyBtn(){
+        $(document).ready(function(){
+            var btn = document.createElement("input");
+            var input = document.createElement("input");
+            input.type = "text";
+            input.id = "LogfroServerBuyBtnTimes";
+            input.style = "margin: 10px;";
+            input.placeholder = "How many times?";
+            btn.className = "btn btn-success";
+            btn.id = "LogfroServerBuyBtn";
+            btn.value = "Buy x times";
+            btn.type = "button";
+            $("#buy .modal-footer form")[0].appendChild(btn);
+            $("#buy .modal-footer form")[0].appendChild(input);
+            $("#LogfroServerBuyBtn").on("click", function(){submitBuyForm($("#LogfroServerBuyBtnTimes")[0].value);});
+        });
+    }
+
 	loadClearOwnLogBtn();
 	$(document).ready(function(){
 		switch(window.location.href){
@@ -276,12 +295,15 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
 				break;
 
 		}
-		if(window.location.href.indexOf("#UpgradeScript") > -1){
-			upgradeServerMax();
-		}
+
 		if(window.location.href.indexOf("https://legacy.hackerexperience.com/hardware?opt=xhd&acc=") > -1){
-            loadHDDUpgradeBtn();
+            loadHDDBuyBtn();
 		}
+
+        if(window.location.href.indexOf("https://legacy.hackerexperience.com/hardware?opt=buy&acc=") > -1){
+            loadServerBuyBtn();
+        }
+
 		if(window.location.href.indexOf("https://legacy.hackerexperience.com/hardware") > -1){
 		    /*
 			if(localStorage.getItem("running") != "true"){
