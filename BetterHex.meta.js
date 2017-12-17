@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Better HEx by Logfro
 // @namespace    https://logfro.de/
-// @version      0.53
+// @version      0.54
 // @description  Better HEx adds useful functions to the legacy hacker experience
 // @author       Logfro
 // @match        https://legacy.hackerexperience.com/*
