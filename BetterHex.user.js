@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Better HEx by Logfro
 // @namespace    https://logfro.de/
-// @version      0.52
+// @version      0.54
 // @description  Better HEx adds useful functions to the legacy hacker experience
 // @author       Logfro
 // @match        https://legacy.hackerexperience.com/*
@@ -113,11 +113,6 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
         window.location = serverLink;
     }
 
-
-    function upgradeHDDMaxedOut(){
-		
-	}
-
 	function buyNewHDD(times){
 		if(times.length < 1){
 			alert("You need to type in a number!");
@@ -128,34 +123,14 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
 			return false;
 		}
 		var x = 0;
-		function upgrade(){
-			var acc = $("#select-bank-acc")[0].value;
-			var w = openPopUp("https://legacy.hackerexperience.com/hardware?opt=xhd&acc="+acc+"#buy","UpgradePopUp");
-			var timer = setInterval(function(){
-				if(w.closed){
-					clearInterval(timer);
-					x++;
-					if(x < times){
-						upgrade();
-					}
-				} else {
-					if(w.$(".alert-success").length > 0){
-						w.close();
-					}
-				}
-			},1000);
-		}
-		upgrade();
-	}
-	
-	function buyHDD(){
-		$(document).ready(function(){
-			$("form")[1].submit();
-		});
-	}
-	
-	function markNotFullUpgradedServers(){
-		$(".span4 .widget-title").css("background-color","yellow"); $(".span4 .widget-title").css("background-image","none");
+        var val = setInterval(function(){
+            if(x == times){
+                clearInterval(val);
+            } else {
+                x++;
+                $("form")[1].submit();
+            }
+        },400);
 	}
 
 	function openPopUp(url, name){
@@ -269,13 +244,11 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
 			input.placeholder = "How many times?";
 			btn.className = "btn btn-success";
 			btn.id = "LogfroHDDUpgradeBtn";
-			btn.value = "Upgrade selected times";
+			btn.value = "Buy x times";
 			btn.type = "button";
-			$("form")[0].appendChild(btn);
-			$("form")[0].appendChild(input);
+            $("#buy .modal-footer form")[0].appendChild(btn);
+            $("#buy .modal-footer form")[0].appendChild(input);
 			$("#LogfroHDDUpgradeBtn").on("click", function(){buyNewHDD($("#LogfroHDDUpgradeBtnTimes")[0].value);});
-			addNavButton("Auto upgrade Ext. HDD (Maxed out)","LogfroAutoUpgradeHDDMaxedOut");
-			$("#LogfroAutoUpgradeHDDMaxedOut").on("click", function(){upgradeHDDMaxedOut();});
 		});
 	}
 	loadClearOwnLogBtn();
@@ -299,9 +272,6 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
 			case "https://legacy.hackerexperience.com/list?action=collect&show=last":
 				clearOwnLogs();
 				break;
-			case "https://legacy.hackerexperience.com/hardware?opt=xhd":
-				loadHDDUpgradeBtn();
-				break;
 			default:
 				break;
 
@@ -310,9 +280,10 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
 			upgradeServerMax();
 		}
 		if(window.location.href.indexOf("https://legacy.hackerexperience.com/hardware?opt=xhd&acc=") > -1){
-			buyHDD();
+            loadHDDUpgradeBtn();
 		}
 		if(window.location.href.indexOf("https://legacy.hackerexperience.com/hardware") > -1){
+		    /*
 			if(localStorage.getItem("running") != "true"){
 				loadUpgradeHDDOfServer();
 				loadUpgradeCPUOfServer();
@@ -323,6 +294,7 @@ $.getScript("https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.js"
 					upgradeHDD();
 				}
 			}
+			*/
 		}
 		var realConfirm=window.confirm;
 			window.confirm=function(){

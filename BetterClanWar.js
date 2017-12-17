@@ -1,7 +1,7 @@
 $(document).ready(function () {
     loadDialog();
     if(localStorage.getItem("ddosActive") == "true"){
-        audoDDoSStart();
+        autoDDoSStart();
     }
 });
 
@@ -20,9 +20,11 @@ function loadDialog() {
 
 function runAttacker (victimIP){
     localStorage.setItem("victimIP",victimIP);
+    localStorage.setItem("ddosActive","true");
+    autoDDoSStart();
 }
 
-function audoDDoSStart(){
+function autoDDoSStart(){
     var victim = localStorage.getItem("victimIP");
     if(window.location.href == "https://legacy.hackerexperience.com/list?action=ddos"){
         if(document.getElementsByClassName("ddos_form").length > 0){
@@ -56,6 +58,7 @@ function reset(){
     localStorage.removeItem("victimIP");
     localStorage.removeItem("ddosActive");
 }
-function runVictim (){
 
+function runVictim (){
+//TODO: Write the func
 }
