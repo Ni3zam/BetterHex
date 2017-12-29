@@ -144,16 +144,10 @@ function submitInput() {
     if (amount > 2500) {
         gritterNotify({
             title: 'HE IP Checker',
-            text: 'You can only check 2500 IP\'s at a time.',
+            text: 'This many IP\'s can take some time.',
             image: '',
             sticky: false
         });
-
-        $('#inputSubmitButton').prop('disabled', false);
-        isChecking = false;
-        $('#inputSubmitButton').text('Check my IP\'s');
-
-        return;
     }
 
     checkIPs(validIPs);
