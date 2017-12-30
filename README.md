@@ -17,6 +17,7 @@ Adds functionalities to legacy hacker experience
 - After pressing login button by the BTC market autoamtically wipes own log (Popup needs to be allowed for the page)
 - Auto upgrade Button for servers (Popup needs to be allowed for the page, Not completely finished yet)
 - Clear Own Logs Button at the top (Popup needs to be allowed for the page)
+- Button to check Ips whether it is NPC,VPC or Clan Server or reseted ip
 
 <h2>Suggestions</h2>
 
