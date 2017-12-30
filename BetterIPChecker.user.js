@@ -1,3 +1,15 @@
+// ==UserScript==
+// @name         BetterIPChecker by Logfro
+// @namespace    https://logfro.de/
+// @version      1.0
+// @description  Better HEx adds useful functions to the legacy hacker experience
+// @author       Logfro
+// @match        https://legacy.hackerexperience.com/*
+// @updateURL    https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.meta.js
+// @downloadURL  https://gitcdn.xyz/repo/Logfro/BetterHex/master/BetterIPChecker.user.js
+// @grant        none
+// ==/UserScript==
+
 var linkToInject = '<span class="pull-right hide-phone"><a href="javascript:void(0)" id="ipCheckLink">Check IP\'s</a></span>';
 var inputModal = '<div class="fade modal"role=dialog id=inputModal tabindex=-1><div class=modal-dialog role=document><div class=modal-content><div class=modal-header><button class=close type=button data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button><h4 class=modal-title>Check IP\'s (created by <a href="https://legacy.hackerexperience.com/profile?id=510033"target=_blank>Jasperr</a>, modified by <a href="https://legacy.hackerexperience.com/profile?id=575029"target=_blank>Logfro</a>)</h4></div><form id=inputForm><div class=modal-body><div class=form-group><label class=control-label for=ipInput>Please input your IP\'s below, one per line and it will give you back all existing VPC\'s and Clan IP\'s.</label><textarea class=form-control id=ipInput placeholder="Place your IP\'s here"rows=10 style=min-width:90%></textarea></div></div><div class=modal-footer><span class="label label-info" id="amountRsc" style="margin-left: 50px;"></span><button class="btn btn-default"type=button data-dismiss=modal>Close</button> <button class="btn btn-primary"type=submit id=inputSubmitButton>Check my IP\'s</button></div></form></div></div></div>';
 var isChecking = false;
@@ -112,7 +124,7 @@ function submitInput() {
 
     var IPs = $('#ipInput').val().split('\n');
 
-    var IPs = IPs.filter(function(elem, index, self) {
+    IPs = IPs.filter(function(elem, index, self) {
         return index == self.indexOf(elem);
     });
 
